@@ -6,6 +6,10 @@ Coding along with the Udemy course:
 
 ## Log
 
+### 2. Docker
+
+Testing / utilizing configuration files
+
 ### 2. Approval flow, Moderation service, and Event Syncing
 
 |  Service   | communication | destination |

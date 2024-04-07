@@ -46,5 +46,5 @@ app.post("/events", (req, res) => {
 
 // server port
 app.listen(4000, () => {
-  console.log("Posts service listening on 4000");
+  console.log("Posts service listening on 4000\nBuild: Using Docker Config");
 });
