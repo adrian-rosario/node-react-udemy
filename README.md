@@ -6,9 +6,20 @@ Coding along with the Udemy course:
 
 ## Log
 
-### 2. Docker
+### 4
+
+- integrated Cluster IP services for the event-bus and posts applications, tested using K8s Service names instead of `localhost` addresses
+
+- having memory and cpu limits in deployment file caused 'minimum cpu' errors when deploying and caused `Pending` instances, commented out generated defaults
+
+### 3. Docker
 
 Testing / utilizing configuration files
+
+- even though the `kubectl k get services` ouput reads as if a 3xxxx port is available, a firewall rule must be added in Google Cloud to open that port to traffic, ie.:
+  `gcloud compute firewall-rules create test-node-port \			
+--allow tcp:30317`
+  - [Google Cloud docs, eposing apps]([https://cloud.google.com/kubernetes-engine/docs/how-to/exposing-apps)
 
 ### 2. Approval flow, Moderation service, and Event Syncing
 
