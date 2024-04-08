@@ -24,7 +24,8 @@ app.post("/posts/:id/comments", async (req, res) => {
 
   commentsByPostId[req.params.id] = comments;
 
-  await axios.post("http://localhost:4005/events", {
+  // "http://localhost:4005/events"
+  await axios.post("http://event-bus-cluster-ip-service:4005/events", {
     type: "CommentCreated",
     data: {
       id: commentId,
@@ -52,7 +53,8 @@ app.post("/events", async (req, res) => {
     });
     comment.status = status;
 
-    await axios.post("http://localhost:4005/events", {
+    // ("http://localhost:4005/events", {
+    await axios.post("http://event-bus-cluster-ip-service:4005/events", {
       type: "CommentUpdated",
       data: {
         id,
@@ -67,5 +69,5 @@ app.post("/events", async (req, res) => {
 });
 
 app.listen(4001, () => {
-  console.log("Comments service listening on 4001");
+  console.log("Comments service listening on 4001\nUsing live Event Bus");
 });

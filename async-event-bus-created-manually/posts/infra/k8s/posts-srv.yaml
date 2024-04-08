@@ -10,4 +10,4 @@ spec:
     - name: posts # for logging
       protocol: TCP
       port: 4000 # facing side
-      targetPort: 4000 #internal to the pod
+      targetPort: 4000 # internal to the pod

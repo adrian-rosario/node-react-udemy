@@ -60,7 +60,11 @@ app.post("/events", (req, res) => {
 app.listen(4002, async () => {
   console.log("Query service listening on: 4002");
   // 11 call the event bus to get all events whenever we're online
-  const responseInformation = await axios.get("http://localhost:4005/events");
+  const responseInformation = await axios.get(
+    "http://event-bus-cluster-ip-service:4005/events"
+  );
+  // "http://localhost:4005/events"
+
   console.log("Query service, running moderation filters...");
   for (let eventData of responseInformation.data) {
     console.log("Processing: ", eventData.type);
