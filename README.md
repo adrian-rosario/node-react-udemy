@@ -6,7 +6,16 @@ Coding along with the Udemy course:
 
 ## Log
 
-### 4
+### 5. Ingress Controller, local domain redirects, Skaffold config
+
+- added config file for trying out Skaffold, seems to kick off faster than possible and inconsistent services fail during deployment, todo/research
+- need to understand/resolve ingress to the client, data is displaying (incorrect)
+- resolving exising issue of two routes, a GET and a POST, both to `/posts`, ngnix cannot do routing based on the request method type, so we have to revise to unique paths
+- for an ingress controller, use the `apply` command noted in the [nginx ingress controller documentation](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start) (see "If you don't have Helm..."). When done successfully `kubectl get ingress` will display an IP under 'ADDRESS' and requets to `http://posts.com/posts` result in JSON entries posted via postman, use `gcloud compute instances list` to get an external IP for the postman request address, and `kubectl describe services` to find the random port 3xxxx port assigned
+- utilizd entries in local `private/etc/hosts` file to redirect `posts.com` requests to the IP of the Ingress controller
+- moved all infrastructure files into one folder, thus `kubectl apply -f .` to kick them all off
+
+### 4. Cluster IP Services
 
 - integrated Cluster IP services for the event-bus and posts applications, tested using K8s Service names instead of `localhost` addresses
 

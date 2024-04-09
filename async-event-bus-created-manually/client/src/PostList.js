@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // so we can make a request
 import CommentCreate from "./CommentCreate";
-import { LOCAL } from "./constants/network";
+// import { LOCAL } from "./constants/network";
 import CommentList from "./CommentList";
 
 export default function PostList() {
@@ -18,7 +18,8 @@ export default function PostList() {
    */
 
   const fetchPosts = async () => {
-    const res = await axios.get(`${LOCAL.BASE}${LOCAL.QUERY_PORT}/posts`);
+    // (`${LOCAL.BASE}${LOCAL.QUERY_PORT}/posts`)
+    const res = await axios.get(`http://posts.com/posts`);
     console.log("PostList data:\n", res.data);
 
     /**

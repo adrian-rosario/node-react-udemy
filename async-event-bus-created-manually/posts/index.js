@@ -10,13 +10,11 @@ app.use(cors());
 
 const posts = {};
 
-// route handler 1
 app.get("/posts", (req, res) => {
   res.send(posts);
 });
 
-// route handler 2
-app.post("/posts", async (req, res) => {
+app.post("/posts/create", async (req, res) => {
   const id = randomBytes(4).toString("hex"); // four bytes of random data, hexadecimal
   console.log("posts POST call, the id for post: " + id);
   const { title } = req.body;
