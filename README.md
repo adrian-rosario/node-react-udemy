@@ -4,7 +4,15 @@ Coding along with the Udemy course:
 
 - [Microservices with Node JS and React](https://www.udemy.com/course/microservices-with-node-js-and-react/?couponCode=GENAISALE24)
 
-## Log
+## Project Two, ticketing - users, sales, payments
+
+### 1. Initial setup, utilizing Skaffold, Google Cloud Build
+
+- integral are the steps needed for deploying an [Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) and [GKE](https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke)
+
+---
+
+## Project One, blog - manually created event bus
 
 ### 5. Ingress Controller, local domain redirects, Skaffold config
 

@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+build:
+  # local:
+  # push: true # false
+  googleCloudBuild:
+    projectId: fourth-carport-417818
+  artifacts:
+    - image: us.gcr.io/fourth-carport-417818/auth # adrianrosario/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
