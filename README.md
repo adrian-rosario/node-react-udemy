@@ -8,7 +8,7 @@ Coding along with the Udemy course:
 
 ### 2. Common error handling middleware defined
 
-- Error class extended
+- Error class extended: RequestValidationError, DatabaseConnectionError
 - custom errors created, using them in route handler, common formatted response `{errors: {message: string, field?: string}[]}`
 
 ### 1. Initial setup, utilizing Skaffold, Google Cloud Build
