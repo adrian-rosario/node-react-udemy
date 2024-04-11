@@ -6,6 +6,11 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 2. Common error handling middleware defined
+
+- Error class extended
+- custom errors created, using them in route handler, common formatted response `{errors: {message: string, field?: string}[]}`
+
 ### 1. Initial setup, utilizing Skaffold, Google Cloud Build
 
 - integral are the steps needed for deploying an [Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) and [GKE](https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke)
