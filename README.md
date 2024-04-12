@@ -6,7 +6,7 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 4. User model added
+### 4. Mongo DB added to deployments, User model added
 
 - created interfaces for mongoose/TypeScript, used those types in the generic definitions, so now we can call User.build({}) and get proper type checking along the way
 
