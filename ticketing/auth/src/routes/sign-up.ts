@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
-// import { errorHandler } from "../middleware/error-handling";
 import { RequestValidationError } from "../middleware/errors/error-request-validation";
 import { DatabaseConnectionError } from "../middleware/errors/error-database-connection";
 
@@ -21,13 +20,10 @@ router.get(
 
     const errors = validationResult(theRequest);
     if (!errors.isEmpty()) {
-      // return res.status(400).send(errors.array());
-      // throw new Error("No empty fields.");
       throw new RequestValidationError(errors.array());
     }
 
     if (!email || typeof email !== "string") {
-      // res.status(400).send("provide email / password");
       throw new Error("Details are not what we expected");
     }
 
