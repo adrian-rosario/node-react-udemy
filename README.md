@@ -6,6 +6,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 3. Async route error handling implemented
+
+- installed npm package `express-async-errors` to alter the default route handling of `Express`, there will be an `await` added to an `async` route (so we don't have to be confined to using `next()`)
+
 ### 2. Common error handling middleware defined
 
 - Error class extended: RequestValidationError, DatabaseConnectionError

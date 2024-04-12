@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
-import { errorHandler } from "../middleware/error-handling";
+// import { errorHandler } from "../middleware/error-handling";
 import { RequestValidationError } from "../middleware/errors/error-request-validation";
 import { DatabaseConnectionError } from "../middleware/errors/error-database-connection";
 
@@ -16,7 +16,7 @@ router.get(
       .isLength({ min: 4, max: 20 })
       .withMessage("Please use a valid password length"),
   ],
-  (theRequest: Request, theResponse: Response) => {
+  async (theRequest: Request, theResponse: Response) => {
     const { email, password } = theRequest.body;
 
     const errors = validationResult(theRequest);

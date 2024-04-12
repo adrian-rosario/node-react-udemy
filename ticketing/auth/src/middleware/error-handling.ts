@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { RequestValidationError } from "./errors/error-request-validation";
 import { DatabaseConnectionError } from "./errors/error-database-connection";
+import { CustomError } from "./errors/error-custom";
 
 export const errorHandler = (
   theError: Error,
@@ -10,25 +11,30 @@ export const errorHandler = (
 ) => {
   console.log(" ===== Error, from error handler =====\n", theError);
 
-  // use our custom validators...
+  // use our custom error handling w/ abstract...
+  if (theError instanceof CustomError) {
+    return theResponse.status(theError.statusCode).send({
+      errors: theError.serializeErrors(),
+    });
+  }
+
+  /*
   if (theError instanceof RequestValidationError) {
     console.log("> Handling request validation error");
 
-    const formattedError = theError.validationErrors.map((error) => {
-      if (error.type === "field") {
-        return { message: error.msg, field: error.path };
-      }
-    });
-    theResponse.status(400).send({ errors: formattedError });
+    theResponse
+      .status(theError.statusCode)
+      .send({ errors: theError.serializeErrors() });
   }
 
   // use our custom validators...
   if (theError instanceof DatabaseConnectionError) {
     console.log("> Handling database connection error");
     return theResponse
-      .status(500)
-      .send({ errors: [{ message: theError.reason }] });
+      .status(theError.statusCode)
+      .send({ errors: theError.serializeErrors() });
   }
+  */
 
   theResponse.status(400).send({
     errors: [{ message: "Error encountered" }],
