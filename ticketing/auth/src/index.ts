@@ -7,6 +7,7 @@ import { signOutRouter } from "./routes/sign-out";
 import { signUpRouter } from "./routes/sign-up";
 import { errorHandler } from "./middleware/error-handling";
 import { NotFoundError } from "./middleware/errors/error-not-found";
+import mongoose from "mongoose";
 
 const app = express();
 app.use(json());
@@ -21,6 +22,21 @@ app.all("*", async (theRequest, theResponse, nextAction) => {
 });
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log("Auth application, listening on port: 3000");
-});
+// mongodb
+const start = async () => {
+  try {
+    await mongoose.connect(
+      "mongodb://auth-mongodb-cluster-ip-service:27017/auth"
+    );
+
+    console.log("MongoDB connected.");
+  } catch (theError) {
+    console.error(theError);
+  }
+
+  app.listen(3000, () => {
+    console.log("Auth application, listening on port: 3000");
+  });
+};
+
+start();

@@ -6,6 +6,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 4. User model added
+
+- created interfaces for mongoose/TypeScript, used those types in the generic definitions, so now we can call User.build({}) and get proper type checking along the way
+
 ### 3. Async route error handling implemented
 
 - installed npm package `express-async-errors` to alter the default route handling of `Express`, there will be an `await` added to an `async` route (so we don't have to be confined to using `next()`)
