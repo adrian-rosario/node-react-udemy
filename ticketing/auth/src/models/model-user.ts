@@ -36,9 +36,4 @@ userSchemea.statics.build = (theAttributes: UserAttributes) => {
 
 const User = mongoose.model<UserDocument, UserModel>("User", userSchemea);
 
-// to get typescrpt involved with creating a new user
-// const buildUser = (theAttributes: UserAttributes) => {
-//   return new User(theAttributes);
-// };
-
-export { User /* , buildUser */ };
+export { User };

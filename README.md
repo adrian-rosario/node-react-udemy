@@ -6,6 +6,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 5. Bad Request error type added
+
+- existing email check, added `BadRequestError` that can be used with `throw`
+
 ### 4. Mongo DB added to deployments, User model added
 
 - created interfaces for mongoose/TypeScript, used those types in the generic definitions, so now we can call User.build({}) and get proper type checking along the way
@@ -33,7 +37,7 @@ Coding along with the Udemy course:
 - need to understand/resolve ingress to the client, data is displaying (incorrect)
 - resolving exising issue of two routes, a GET and a POST, both to `/posts`, ngnix cannot do routing based on the request method type, so we have to revise to unique paths
 - for an ingress controller, use the `apply` command noted in the [nginx ingress controller documentation](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start) (see "If you don't have Helm..."). When done successfully `kubectl get ingress` will display an IP under 'ADDRESS' and requets to `http://posts.com/posts` result in JSON entries posted via postman, use `gcloud compute instances list` to get an external IP for the postman request address, and `kubectl describe services` to find the random port 3xxxx port assigned
-- utilizd entries in local `private/etc/hosts` file to redirect `posts.com` requests to the IP of the Ingress controller
+- added an entry in local `/etc/hosts` file to redirect `posts.com` requests to the IP of the Ingress controller
 - moved all infrastructure files into one folder, thus `kubectl apply -f .` to kick them all off
 
 ### 4. Cluster IP Services
