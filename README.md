@@ -6,9 +6,14 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 9. CurrentUser
+
+- establish if user has a cookie with a valid JWT
+
 ### 8. SignIn started
 
 - using same pattern of using session JWT as the SignUp
+- comparision helper method for stored and supplied password
 
 ### 7. Cookie, Kubernetes Secret, JWT
 

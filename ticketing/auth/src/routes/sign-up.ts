@@ -1,7 +1,5 @@
 import express, { Request, Response } from "express";
-import { body /*, validationResult*/ } from "express-validator";
-// import { RequestValidationError } from "../middleware/errors/error-request-validation";
-// import { DatabaseConnectionError } from "../middleware/errors/error-database-connection"; // test code
+import { body } from "express-validator";
 import { User } from "../models/model-user";
 import { BadRequestError } from "../middleware/errors/error-bad-request";
 import jwt from "jsonwebtoken";

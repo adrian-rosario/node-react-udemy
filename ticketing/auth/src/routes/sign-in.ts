@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
-import { body /*, validationResult*/ } from "express-validator";
-// import { RequestValidationError } from "../middleware/errors/error-request-validation";
+import { body } from "express-validator";
 import { validateRequest } from "../middleware/validate-request";
 import { User } from "../models/model-user";
 import { BadRequestError } from "../middleware/errors/error-bad-request";
@@ -20,9 +19,6 @@ router.get(
   validateRequest,
   //
   async (theRequest: Request, theResponse: Response) => {
-    // res.send("/signin route");
-    // theResponse.send("OK");
-
     const { email, password } = theRequest.body;
 
     const existingUser = await User.findOne({ email });
