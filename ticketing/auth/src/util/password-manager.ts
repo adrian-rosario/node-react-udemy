@@ -6,7 +6,7 @@ import { promisify } from "util";
 // promise based implementaion, and can use async/await
 const scryptAsyncPromise = promisify(scrypt);
 
-export class Password {
+export class PasswordManager {
   static async toHash(password: string) {
     // take plaintext password, hash it
     const salt = randomBytes(8).toString("hex");

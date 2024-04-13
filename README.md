@@ -6,6 +6,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 8. SignIn started
+
+- using same pattern of using session JWT as the SignUp
+
 ### 7. Cookie, Kubernetes Secret, JWT
 
 - session cookie is authored when a User is created, JSON web token value is written in the cookie
