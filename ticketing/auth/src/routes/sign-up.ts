@@ -4,6 +4,7 @@ import { RequestValidationError } from "../middleware/errors/error-request-valid
 // import { DatabaseConnectionError } from "../middleware/errors/error-database-connection"; // test code
 import { User } from "../models/model-user";
 import { BadRequestError } from "../middleware/errors/error-bad-request";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -41,6 +42,16 @@ router.get(
 
     const newUser = User.build({ email, password });
     await newUser.save(); // persist to mongodb
+
+    // generate jwt, store on session object
+    const userJsonWebToken = jwt.sign(
+      {
+        id: newUser.id,
+        email: newUser.email,
+      },
+      process.env.JWT_KEY!
+    );
+    theRequest.session = { jwt: userJsonWebToken };
 
     theResponse.status(201).send(newUser); // Created
   }

@@ -15,6 +15,12 @@ spec:
       containers:
         - name: auth
           image: us.gcr.io/fourth-carport-417818/auth # adrianrosario/auth
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service

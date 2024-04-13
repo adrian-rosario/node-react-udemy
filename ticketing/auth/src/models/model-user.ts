@@ -19,17 +19,29 @@ interface UserDocument extends mongoose.Document {
   password: string;
 }
 
-const userSchemea = new mongoose.Schema({
-  email: {
-    type: String, // specific to Mongoose, referring to an actual constructor (hence cap)
-    required: true,
-  },
+const userSchemea = new mongoose.Schema(
+  {
+    email: {
+      type: String, // specific to Mongoose, referring to an actual constructor (hence cap)
+      required: true,
+    },
 
-  password: {
-    type: String,
-    required: true,
+    password: {
+      type: String,
+      required: true,
+    },
   },
-});
+  {
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id; // create id field, then delte _id
+        delete ret._id;
+        delete ret.password; // remote the property from the object
+        delete ret.__v; // remove __v (version key)
+      },
+    },
+  }
+);
 
 // hash password before writing to db
 userSchemea.pre("save", async function (done) {

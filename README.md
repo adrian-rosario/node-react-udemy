@@ -6,6 +6,11 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 7. Cookie, Kubernetes Secret, JWT
+
+- session cookie is authored when a User is created, JSON web token value is written in the cookie
+- Kubernetes Secret is utilized for the JWT key
+
 ### 6. Password hashing
 
 - before writing to MongoDB, `password` is not longer saved in plain text (login comparison is a later step)
