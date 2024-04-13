@@ -37,20 +37,12 @@ router.get(
 
     if (existingUser) {
       throw new BadRequestError("User already exists, cannot create account.");
-      // console.log("user email exists");
-      // return theResponse.send({});
     }
 
     const newUser = User.build({ email, password });
     await newUser.save(); // persist to mongodb
 
-    theResponse.status(201).send(newUser);
-
-    // test code
-    // console.log("signup, create new user...");
-    // throw new DatabaseConnectionError();
-    // theResponse.send("/signup route");
-    //
+    theResponse.status(201).send(newUser); // Created
   }
 );
 

@@ -30,6 +30,7 @@ const start = async () => {
     );
 
     console.log("MongoDB connected.");
+    //
   } catch (theError) {
     console.error(theError);
   }

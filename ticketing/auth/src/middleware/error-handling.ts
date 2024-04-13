@@ -17,6 +17,7 @@ export const errorHandler = (
   }
 
   theResponse.status(400).send({
+    // bad request
     errors: [{ message: "Error encountered" }],
   });
 };

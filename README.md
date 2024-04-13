@@ -6,6 +6,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 6. Password hashing
+
+- before writing to MongoDB, `password` is not longer saved in plain text (login comparison is a later step)
+
 ### 5. Bad Request error type added
 
 - existing email check, added `BadRequestError` that can be used with `throw`

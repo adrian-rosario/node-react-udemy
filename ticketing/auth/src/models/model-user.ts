@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Password } from "../util/password";
 
 // for type checking of attributes when we create a new user
 // ie. we can't accidentally mangle the propertie w/o type checks complaining
@@ -28,6 +29,16 @@ const userSchemea = new mongoose.Schema({
     type: String,
     required: true,
   },
+});
+
+// hash password before writing to db
+userSchemea.pre("save", async function (done) {
+  if (this.isModified("password")) {
+    const hashed = await Password.toHash(this.get("password"));
+    this.set("password", hashed);
+  }
+
+  done();
 });
 
 userSchemea.statics.build = (theAttributes: UserAttributes) => {
