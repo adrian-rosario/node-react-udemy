@@ -6,6 +6,8 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 10. SignOut added
+
 ### 9. CurrentUser
 
 - establish if user has a cookie with a valid JWT
@@ -17,7 +19,7 @@ Coding along with the Udemy course:
 
 ### 7. Cookie, Kubernetes Secret, JWT
 
-- session cookie is authored when a User is created, JSON web token value is written in the cookie
+- session cookie is authored when a User is created (`npm install cookie-session`, `npm install jsonwebtoken` and the `@types`), JSON web token value is written in the cookie
 - Kubernetes Secret is utilized for the JWT key
 
 ### 6. Password hashing
