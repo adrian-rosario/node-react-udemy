@@ -11,7 +11,7 @@ export const requireAuthentication = (
   theNext: NextFunction
 ) => {
   if (!theRequest.currentUser) {
-    return new UnauthorizedError();
+    throw new UnauthorizedError();
   }
   theNext();
 };
