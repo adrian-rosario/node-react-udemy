@@ -6,7 +6,18 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 11. Augmented type definition, vs-kubernetes linter
+
+- added a shared `currentUserCheck` which includes using `declare global` to modify an existing type definition, in this case, Express' `Request`
+- VS Code preference to dismiss the `yaml` linting warning about `One or more containers do not have resource limits`, use the following in `setting.json`:  
+   `"vs-kubernetes": {
+    "disable-linters": ["resource-limits"],
+    ...
+},`
+
 ### 10. SignOut added
+
+- setting the `session` to `null` destroys the cookie
 
 ### 9. CurrentUser
 
@@ -14,13 +25,14 @@ Coding along with the Udemy course:
 
 ### 8. SignIn started
 
-- using same pattern of using session JWT as the SignUp
-- comparision helper method for stored and supplied password
+- using same pattern of session JWT coded in SignUp
+- comparision helper method in PasswordManager for stored and supplied password
 
 ### 7. Cookie, Kubernetes Secret, JWT
 
 - session cookie is authored when a User is created (`npm install cookie-session`, `npm install jsonwebtoken` and the `@types`), JSON web token value is written in the cookie
 - Kubernetes Secret is utilized for the JWT key
+- secret creation example `kubectl create secret generic jwt-secret-name --from-literal=JWT_KEY=xxxxx`
 
 ### 6. Password hashing
 
