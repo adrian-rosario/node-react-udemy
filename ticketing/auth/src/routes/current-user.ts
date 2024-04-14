@@ -9,7 +9,8 @@ const router = express.Router();
 router.get(
   "/api/users/currentuser",
   //
-  [currentUserCheck, requireAuthentication],
+  currentUserCheck,
+  requireAuthentication,
   (theRequest: Request, theResponse: Response) => {
     // - moved to currentUserCheck
     //
