@@ -19,7 +19,7 @@ declare global {
 
 /**
  * shared feature so we can validate a user's logged in satus
- * ie. make sure a valid JWT exits and continue on...
+ * - extract the JWT payload and set it as theRequest.currentUser
  */
 
 export const currentUserCheck = (

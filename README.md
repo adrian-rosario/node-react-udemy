@@ -6,9 +6,13 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 11. Augmented type definition, vs-kubernetes linter
+### 12. requireAuthentication
 
-- added a shared `currentUserCheck` which includes using `declare global` to modify an existing type definition, in this case, Express' `Request`
+- `UnauthorizedError` added, `requireAuthentication` check added and testing successfully in the `currentUserRouter` route (cannot access the path unless user is logged in)
+
+### 11. Augmented type definition, toggled vs-kubernetes resource-limits linter
+
+- added a shared `currentUserCheck` (verify JWT enviroment variable) which includes using `declare global` to modify an existing type definition, in this case, Express' `Request` to add a `currentUser` property
 - VS Code preference to dismiss the `yaml` linting warning about `One or more containers do not have resource limits`, use the following in `setting.json`:  
    `"vs-kubernetes": {
     "disable-linters": ["resource-limits"],
