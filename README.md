@@ -6,12 +6,12 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 13. index.ts refactoring, for unit tests goals
+### 13. index.ts refactoring, unit tests
 
 - `npm install --save-dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server`  
-  -- so these aren't deployed to the cluster, also add into the Dockerfile `--omit=dev`
-
+  -- so these aren't deployed to the cluster, in the Dockerfile `--omit=dev`
 - so we can test `app` and utilize the ephemeral ports the testing library gives us
+- jest setup added, one passing test
 
 ### 12. requireAuthentication
 
@@ -44,6 +44,7 @@ Coding along with the Udemy course:
 - session cookie is authored when a User is created (`npm install cookie-session`, `npm install jsonwebtoken` and the `@types`), JSON web token value is written in the cookie
 - Kubernetes Secret is utilized for the JWT key
 - secret creation example `kubectl create secret generic jwt-secret-name --from-literal=JWT_KEY=xxxxx`
+- generate 32 bit string: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
 
 ### 6. Password hashing
 
