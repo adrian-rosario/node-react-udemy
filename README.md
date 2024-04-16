@@ -2,9 +2,17 @@
 
 Coding along with the Udemy course:
 
-- [Microservices with Node JS and React](https://www.udemy.com/course/microservices-with-node-js-and-react/?couponCode=GENAISALE24)
+- [Microservices with Node JS and React](https://www.udemy.com/course/microservices-with-node-js-and-react/?couponCode=GENAISALE24)  
+  Instructor: **Stephen Grider**
+
+---
 
 ## Project Two, ticketing - users, sales, payments
+
+### 14. Global helper signin function
+
+- additional authentication tests added
+- tests `setup` set with a global namespace entry for reuse whenever a `signin()` step is needed during unit tests
 
 ### 13. index.ts refactoring, unit test setup
 
