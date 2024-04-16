@@ -9,7 +9,9 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 15. Next added, deployment for Client configured
+### 16. CSS
+
+### 15. Next added, deployment for React Client configured
 
 - Next added for server side React rendering, Client Deployment and Service are working in cluster
 
