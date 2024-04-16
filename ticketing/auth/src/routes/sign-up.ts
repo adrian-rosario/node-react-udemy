@@ -7,7 +7,7 @@ import { validateRequest } from "../middleware/validate-request";
 
 const router = express.Router();
 
-router.get(
+router.post(
   "/api/users/signup",
   //
   // validation middleware

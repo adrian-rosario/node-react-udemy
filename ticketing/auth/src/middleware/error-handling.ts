@@ -7,10 +7,9 @@ export const errorHandler = (
   theResponse: Response,
   theNextFunction: NextFunction
 ) => {
-  console.log(" ===== Error, from error handler =====\n", theError);
-
   // use our custom error handling w/ abstract...
   if (theError instanceof CustomError) {
+    console.log(" ===== Error, from error handler =====\n", theError);
     return theResponse.status(theError.statusCode).send({
       errors: theError.serializeErrors(),
     });

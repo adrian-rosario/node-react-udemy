@@ -6,12 +6,12 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 13. index.ts refactoring, unit tests
+### 13. index.ts refactoring, unit test setup
 
 - `npm install --save-dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server`  
   -- so these aren't deployed to the cluster, in the Dockerfile `--omit=dev`
-- so we can test `app` and utilize the ephemeral ports the testing library gives us
-- jest setup added, one passing test
+- refactored so we can test `app` solo, and utilize the ephemeral ports the testing library gives us (ie, we cannot use port 3000 to test `app`)
+- Jest setup added, one passing test
 
 ### 12. requireAuthentication
 

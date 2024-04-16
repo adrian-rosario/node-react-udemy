@@ -7,7 +7,6 @@ import { signOutRouter } from "./routes/sign-out";
 import { signUpRouter } from "./routes/sign-up";
 import { errorHandler } from "./middleware/error-handling";
 import { NotFoundError } from "./middleware/errors/error-not-found";
-
 import cookieSession from "cookie-session";
 
 const app = express();

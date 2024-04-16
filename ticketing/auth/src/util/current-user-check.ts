@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { BadRequestError } from "../middleware/errors/error-bad-request";
+// import { BadRequestError } from "../middleware/errors/error-bad-request";
 
 interface UserPayload {
   id: string;
@@ -40,7 +40,7 @@ export const currentUserCheck = (
 
     theRequest.currentUser = payload;
   } catch (theError) {
-    throw new BadRequestError("User check, bad request.");
+    // throw new BadRequestError("User check, bad request.");
   }
 
   theNext();

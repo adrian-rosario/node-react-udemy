@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.get(
+router.post(
   "/api/users/signin",
   // validation
   [

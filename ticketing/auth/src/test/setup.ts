@@ -5,30 +5,29 @@ import { app } from "../app";
 let mongoMemoryServer: any;
 
 beforeAll(async () => {
-  mongoMemoryServer = new MongoMemoryServer();
-  const mongoMemoryServerUri = await mongoMemoryServer.getUri();
+  process.env.JWT_KEY =
+    "3aa146e46a63197dde4f00bff8b9608aa067db5c8ca924dce4d7380d34eb3fa6";
 
-  await mongoose.connect(mongoMemoryServerUri, {
-    // used in visual example, throws linting noise
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true,
-  });
+  mongoMemoryServer = await MongoMemoryServer.create();
+  const mongoMemoryServerUri = mongoMemoryServer.getUri();
 
-  beforeEach(async () => {
-    // delete/reset any existing data, start off clean
-    const collections = await mongoose.connection.db.collections();
+  await mongoose.connect(mongoMemoryServerUri, {});
+});
 
-    for (let collectionItem of collections) {
-      await collectionItem.deleteMany({});
-    }
-  });
+beforeEach(async () => {
+  // delete/reset any existing data, start off clean
+  const collections = await mongoose.connection.db.collections();
 
-  // stop the in-memory server
-  // disconnect from it as well
-  afterAll(async () => {
-    if (mongoMemoryServer) {
-      await mongoMemoryServer.stop();
-    }
-    await mongoose.connection.close();
-  });
+  for (let collectionItem of collections) {
+    await collectionItem.deleteMany({});
+  }
+});
+
+// stop the in-memory server
+// disconnect from it as well
+afterAll(async () => {
+  if (mongoMemoryServer) {
+    await mongoMemoryServer.stop();
+  }
+  await mongoose.connection.close();
 });
