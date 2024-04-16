@@ -9,7 +9,9 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 16. CSS
+### 16. Bootstrap CSS
+
+- `npm install bootstrap`
 
 ### 15. Next added, deployment for React Client configured
 
