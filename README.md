@@ -9,9 +9,11 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 16. Bootstrap CSS
+### 16. Bootstrap CSS, Axios, Signup form
 
 - `npm install bootstrap`
+- `npm install axios` - for making the http requests (POST, GET, etc.)
+- Signup form started which utilizes the custom error responses developed earlier for a valid email address and password
 
 ### 15. Next added, deployment for React Client configured
 
