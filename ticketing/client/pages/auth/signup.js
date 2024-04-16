@@ -1,30 +1,40 @@
 import { useState } from "react";
 import axios from "axios";
+import hookRequest from "../../hooks/hook-request";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
+  const { useRequest, errors } = hookRequest({
+    url: "/api/users/signup",
+    method: "post",
+    body: {
+      email,
+      password,
+    },
+  });
 
   const formHandler = async (event) => {
     event.preventDefault();
 
-    try {
-      const theResponse = await axios.post("/api/users/signup", {
-        email,
-        password,
-      });
+    useRequest();
+    // try {
+    //   const theResponse = await axios.post("/api/users/signup", {
+    //     email,
+    //     password,
+    //   });
 
-      console.log("form data:\n", theResponse.data);
-    } catch (error) {
-      console.log(error.response.data);
-      setErrors(error.response.data.errors);
-    }
+    //   console.log("form data:\n", theResponse.data);
+    // } catch (error) {
+    //   console.log(error.response.data);
+    //   setErrors(error.response.data.errors);
+    // }
   };
 
   return (
     <>
-      <div style={{ margin: "10px" }}>
+      <div className='form-group'>
         <form onSubmit={formHandler}>
           <h1>Signup page</h1>
 
@@ -53,16 +63,7 @@ export default function SignUp() {
             ></input>
           </div>
 
-          {errors.length > 0 && (
-            <div className='alert alert-danger' style={{ marginTop: "10px" }}>
-              <h4>Oops.</h4>
-              <ul>
-                {errors.map((theError) => (
-                  <li key={theError.message}>{theError.message}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {errors}
 
           <div style={{ marginTop: "10px" }}>
             <button className='btn btn-primary'>Sign Up</button>

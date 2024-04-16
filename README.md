@@ -9,6 +9,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 17. Hook added for network request and error, SignUp
+
+- instead of setting up the post call manually for each network request, a hook has been added so once we define the `url, method, body`, simply call `useRequest()`
+
 ### 16. Bootstrap CSS, Axios, Signup form
 
 - `npm install bootstrap`
