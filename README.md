@@ -9,6 +9,20 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 18. onSuccess callback for Signup added, signed in check
+
+- resolved `Error: connect ECONNREFUSED 127.0.0.1:80` for when we call `/api/users/currentuser`. We're calling a service not in our Client or Next container, so the call is not getting routed to the Ingress Nginx Controller. This can be mitigated using `getInitialProps`
+- [getInitialProps](https://nextjs.org/docs/pages/api-reference/functions/get-initial-props) is invoked at specific times as per Next
+
+|           request source            | `getInitialProps` execution |
+| :---------------------------------: | :-------------------------: |
+|          page hard refresh          |           server            |
+| clicking link from different domain |           server            |
+|      typing URL in address bar      |           server            |
+| navigating in **app** between pages |           client            |
+
+- `apiBuildClient` created to handle these requests from inside or outside of the container, a call to the Ingress controller (not our React client) we route the `baseURL` to the ingress controller's name (use `kubectl get services -n ingress-nginx`) and the ingress' namespace (use `kubectl get namespace`). In this case, the configured path is `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local`
+
 ### 17. Hook added for network request and error, SignUp
 
 - instead of setting up the post call manually for each network request, a hook has been added so once we define the `url, method, body`, simply call `useRequest()`

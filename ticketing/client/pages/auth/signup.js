@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import hookRequest from "../../hooks/hook-request";
+import Router from "next/router";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -13,12 +13,15 @@ export default function SignUp() {
       email,
       password,
     },
+    onSuccess: () => {
+      Router.push("/"); // reroute
+    },
   });
 
   const formHandler = async (event) => {
     event.preventDefault();
 
-    useRequest();
+    await useRequest();
     // try {
     //   const theResponse = await axios.post("/api/users/signup", {
     //     email,
@@ -34,7 +37,7 @@ export default function SignUp() {
 
   return (
     <>
-      <div className='form-group'>
+      <div style={{ margin: "10px" }}>
         <form onSubmit={formHandler}>
           <h1>Signup page</h1>
 
