@@ -21,8 +21,8 @@ router.post(
   //
   validateRequest,
   //
-  async (theRequest: Request, theResponse: Response) => {
-    const { email, password } = theRequest.body;
+  async (req: Request, theResponse: Response) => {
+    const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
 
     // Request Validation
@@ -46,7 +46,7 @@ router.post(
       },
       process.env.JWT_KEY!
     );
-    theRequest.session = { jwt: userJsonWebToken };
+    req.session = { jwt: userJsonWebToken };
 
     theResponse.status(201).send(newUser); // Created
   }

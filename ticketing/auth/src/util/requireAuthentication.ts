@@ -6,11 +6,11 @@ import { UnauthorizedError } from "../middleware/errors/error-unauthorized";
  */
 
 export const requireAuthentication = (
-  theRequest: Request,
+  req: Request,
   theResponse: Response,
   theNext: NextFunction
 ) => {
-  if (!theRequest.currentUser) {
+  if (!req.currentUser) {
     throw new UnauthorizedError();
   }
   theNext();

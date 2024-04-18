@@ -8,8 +8,8 @@ router.get(
   "/api/users/currentuser",
   currentUserCheck,
   // requireAuthentication, // TODO: reivew, causing requests to fail
-  (theRequest: Request, theResponse: Response) => {
-    theResponse.send({ currentUser: theRequest.currentUser || null });
+  (req: Request, res: Response) => {
+    res.send({ currentUser: req.currentUser || null });
   }
 );
 

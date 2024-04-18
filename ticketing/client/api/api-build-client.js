@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export default ({ req }) => {
-  if (typeof window === undefined) {
+  // console.log("api build client: ", req);
+
+  if (typeof window === "undefined") {
     // to server
     return axios.create({
       baseURL:

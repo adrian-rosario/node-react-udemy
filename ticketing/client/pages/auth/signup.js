@@ -2,10 +2,10 @@ import { useState } from "react";
 import hookRequest from "../../hooks/hook-request";
 import Router from "next/router";
 
-export default function SignUp() {
+export default () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [errors, setErrors] = useState([]);
+
   const { useRequest, errors } = hookRequest({
     url: "/api/users/signup",
     method: "post",
@@ -20,19 +20,7 @@ export default function SignUp() {
 
   const formHandler = async (event) => {
     event.preventDefault();
-
     await useRequest();
-    // try {
-    //   const theResponse = await axios.post("/api/users/signup", {
-    //     email,
-    //     password,
-    //   });
-
-    //   console.log("form data:\n", theResponse.data);
-    // } catch (error) {
-    //   console.log(error.response.data);
-    //   setErrors(error.response.data.errors);
-    // }
   };
 
   return (
@@ -75,4 +63,4 @@ export default function SignUp() {
       </div>
     </>
   );
-}
+};

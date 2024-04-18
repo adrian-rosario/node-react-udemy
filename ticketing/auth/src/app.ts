@@ -27,7 +27,7 @@ app.use(signInRouter);
 app.use(signOutRouter);
 app.use(signUpRouter);
 
-app.all("*", async (theRequest, theResponse, nextAction) => {
+app.all("*", async (req, res) => {
   throw new NotFoundError(); // for 404 / path not found
 });
 app.use(errorHandler);
