@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default ({ req }) => {
-  // console.log("api build client: ", req);
+  console.log("client req: ", req);
 
   if (typeof window === "undefined") {
     // to server

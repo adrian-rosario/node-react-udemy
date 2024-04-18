@@ -18,8 +18,8 @@ router.post(
   //
   validateRequest,
   //
-  async (req: Request, theResponse: Response) => {
-    const { email, password } = req.body;
+  async (theRequest: Request, theResponse: Response) => {
+    const { email, password } = theRequest.body;
 
     const existingUser = await User.findOne({ email });
 
@@ -44,7 +44,7 @@ router.post(
       },
       process.env.JWT_KEY!
     );
-    req.session = { jwt: userJsonWebToken };
+    theRequest.session = { jwt: userJsonWebToken };
 
     theResponse.status(200).send(existingUser); // OK
   }

@@ -3,11 +3,11 @@ import { validationResult } from "express-validator";
 import { RequestValidationError } from "./errors/error-request-validation";
 
 export const validateRequest = (
-  req: Request,
+  theRequest: Request,
   theResponse: Response,
   theNextFunction: NextFunction
 ) => {
-  const errors = validationResult(req);
+  const errors = validationResult(theRequest);
 
   if (!errors.isEmpty()) {
     throw new RequestValidationError(errors.array());

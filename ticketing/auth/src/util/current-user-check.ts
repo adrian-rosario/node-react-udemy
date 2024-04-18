@@ -23,22 +23,22 @@ declare global {
  */
 
 export const currentUserCheck = (
-  req: Request,
+  theRequest: Request,
   theResponse: Response,
   theNext: NextFunction
 ) => {
   // is session defined, is jwt defined
-  if (!req.session?.jwt) {
+  if (!theRequest.session?.jwt) {
     return theNext();
   }
 
   try {
     const payload = jwt.verify(
-      req.session.jwt,
+      theRequest.session.jwt,
       process.env.JWT_KEY!
     ) as UserPayload;
 
-    req.currentUser = payload;
+    theRequest.currentUser = payload;
   } catch (theError) {
     // throw new BadRequestError("User check, bad request.");
   }

@@ -9,10 +9,20 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 19.
+### 19. Passing props through
+
+- once a `getInitialProps` is also added to our custom `AppComponent` (`_app.js`), the `getInitialProps` in `index.js` no longer gets called. This is resolved by calling `appContext.Component.getInitialProps`
+
+- nested context props when a **Custom App** Component is used
+  | `getInitialProps` | context |
+  | :-: | :-: |
+  | **Page** Component | `context==={req, res}` |
+  | **Custom App** Component | `context==={Component, ctx: {req, res}}` |
+- AppComponent full context: `[ 'AppTree', 'Component', 'router', 'ctx' ]`
 
 ### 18. onSuccess callback for Signup added, signed in check
 
+- reminder **https** when testing the cookie :sweat_smile:
 - resolved `Error: connect ECONNREFUSED 127.0.0.1:80` for when we call `/api/users/currentuser`. We're calling a service not in our Client or Next container, so the call is not getting routed to the Ingress Nginx Controller. This can be mitigated using `getInitialProps`
 - [getInitialProps](https://nextjs.org/docs/pages/api-reference/functions/get-initial-props) is invoked at specific times as per Next
 
@@ -24,7 +34,6 @@ Coding along with the Udemy course:
 | navigating in **app** between pages |           client            |
 
 - `apiBuildClient` created to handle these requests from inside or outside of the container, a call to the Ingress controller (not our React client) we route the `baseURL` to the ingress controller's name (use `kubectl get services -n ingress-nginx`) and the ingress' namespace (use `kubectl get namespace`). In this case, the configured path is `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local`
-- TODO: troubleshoot 'signed in' state in index page
 
 ### 17. Hook added for network request and error, SignUp
 
