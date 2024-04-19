@@ -4,6 +4,8 @@ import { json } from "body-parser";
 import { errorHandler } from "@agrtickets/common";
 import { NotFoundError } from "@agrtickets/common";
 import cookieSession from "cookie-session";
+import { createTicketRouter } from "./routes/new";
+import { currentUserCheck } from "@agrtickets/common";
 
 const app = express();
 
@@ -17,6 +19,9 @@ app.use(
     secure: process.env.NODE_ENV !== "test", // https connection: false if we are in a test env, otherwise true
   })
 );
+app.use(currentUserCheck);
+
+app.use(createTicketRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError(); // for 404 / path not found
