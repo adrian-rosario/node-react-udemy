@@ -9,6 +9,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 19. Header navigation added, SignOut
+
+- `useEffect` used in SignOut for the `/api/users/signout` reqeust
+
 ### 19. Passing props through
 
 - once a `getInitialProps` is also added to our custom `AppComponent` (`_app.js`), the `getInitialProps` in `index.js` no longer gets called. This is resolved by calling `appContext.Component.getInitialProps`

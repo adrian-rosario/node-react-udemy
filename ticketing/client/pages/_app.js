@@ -1,5 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import apiBuildClient from "../api/api-build-client";
+import Header from "../components/header";
+
 /**
  * Next wraps pages around it's own custom default component
  * that is referred to as the 'app'
@@ -9,10 +11,13 @@ import apiBuildClient from "../api/api-build-client";
  * defined here.
  */
 export default function AppComponent({ Component, pageProps, currentUser }) {
+  if (currentUser) {
+    console.log("==== ", { currentUser });
+  }
   return (
     <>
       <div>
-        <h1>Hello, heading {currentUser.email}</h1>
+        <Header currentUser={currentUser} />
         <Component {...pageProps} />
       </div>
     </>
