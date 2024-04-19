@@ -9,7 +9,7 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
-### 20. Tickets CRUD
+### 20. Tickets CRUD, and test cases setup
 
 |      Route       | Method |               Body               |         Goal         |
 | :--------------: | :----: | :------------------------------: | :------------------: |
