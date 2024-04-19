@@ -9,6 +9,11 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 19. Common NPM module
+
+- shared NPM library created from Auth souces `/middleware` and `/errors`
+- Organization created in NPM, and module published as `@agrtickets/common`
+
 ### 19. Header navigation added, SignOut
 
 - `useEffect` used in SignOut for the `/api/users/signout` reqeust

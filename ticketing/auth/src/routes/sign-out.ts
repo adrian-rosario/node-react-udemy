@@ -8,6 +8,7 @@ router.post(
     // expunge cookie
     theRequest.session = null;
 
+    // give us a timestamp to display when we sign out
     var offset = new Date().getTimezoneOffset(); // getting offset to make time in gmt+0 zone (UTC) (for gmt+5 offset comes as -300 minutes)
     var date = new Date();
     date.setMinutes(date.getMinutes() + offset); // date now in UTC time

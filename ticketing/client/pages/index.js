@@ -4,7 +4,13 @@ import apiBuildClient from "../api/api-build-client";
 const IndexPage = ({ currentUser }) => {
   console.log("current user? ", currentUser);
 
-  return currentUser ? <h1>Signed In</h1> : <h1>NOT Signed In</h1>;
+  return (
+    <>
+      <div style={{ margin: "10px" }}>
+        {currentUser ? <h1>Signed In</h1> : <h1>NOT Signed In</h1>}
+      </div>
+    </>
+  );
 };
 
 // NextJS, retrieve values during server side rendering process
