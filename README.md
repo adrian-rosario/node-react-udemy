@@ -9,6 +9,17 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 20. Tickets CRUD
+
+|      Route       | Method |               Body               |         Goal         |
+| :--------------: | :----: | :------------------------------: | :------------------: |
+|   /api/tickets   |  GET   |                -                 | Retrieve all tickets |
+| /api/tickets/:id |  GET   |                -                 | Retrieve one ticket  |
+|   /api/tickets   |  POST  | `{title: string, price: string}` |    Create ticket     |
+|   /api/tickets   |  PUT   | `{title: string, price: string}` |    Update ticket     |
+
+- utilized `MONGO_URI` environment variable defined in the `depl.yaml` for Auth and Tickets for the connection string
+
 ### 19. Common NPM module
 
 - shared NPM library created from Auth souces `/middleware` and `/errors`
@@ -23,10 +34,12 @@ Coding along with the Udemy course:
 - once a `getInitialProps` is also added to our custom `AppComponent` (`_app.js`), the `getInitialProps` in `index.js` no longer gets called. This is resolved by calling `appContext.Component.getInitialProps`
 
 - nested context props when a **Custom App** Component is used
-  | `getInitialProps` | context |
-  | :-: | :-: |
-  | **Page** Component | `context==={req, res}` |
+
+  |    `getInitialProps`     |                 context                  |
+  | :----------------------: | :--------------------------------------: |
+  |    **Page** Component    |          `context==={req, res}`          |
   | **Custom App** Component | `context==={Component, ctx: {req, res}}` |
+
 - AppComponent full context: `[ 'AppTree', 'Component', 'router', 'ctx' ]`
 
 ### 18. onSuccess callback for Signup added, signed in check
