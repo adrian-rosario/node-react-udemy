@@ -5,6 +5,21 @@ Coding along with the Udemy course:
 - [Microservices with Node JS and React](https://www.udemy.com/course/microservices-with-node-js-and-react/?couponCode=GENAISALE24)  
   Instructor: **Stephen Grider**
 
+## Launching the application:
+
+1. create the Kubernetes Cluster in Google Cloud
+2. run the Connect command provided
+3. generate a secrete, ie. `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=xyz123`
+4. Run two commands to install the Ingress-Nginx Controller:  
+   `kubectl create clusterrolebinding cluster-admin-binding \
+--clusterrole cluster-admin \
+--user $(gcloud config get-value account)`
+5. `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml`
+6. `skaffold dev`
+7. wait, the process takes a few minutes to complete
+8. get the ingress IP address
+9. apply that IP to the `/etc/hosts` file for the domain you want to subtitute, in this case, `ticketing.com`
+
 ---
 
 ## Project Two, ticketing - users, sales, payments

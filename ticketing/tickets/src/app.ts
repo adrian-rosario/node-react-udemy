@@ -6,6 +6,7 @@ import { NotFoundError } from "@agrtickets/common";
 import cookieSession from "cookie-session";
 import { createTicketRouter } from "./routes/new";
 import { currentUserCheck } from "@agrtickets/common";
+import { showTicketRouter } from "./routes/show";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(
 app.use(currentUserCheck);
 
 app.use(createTicketRouter);
+app.use(showTicketRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError(); // for 404 / path not found
