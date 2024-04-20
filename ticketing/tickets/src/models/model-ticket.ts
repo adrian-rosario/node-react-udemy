@@ -9,16 +9,16 @@ interface TicketAttributes {
   userId: string;
 }
 
-// describes the properties a User model has
-interface TicketModel extends mongoose.Model<TicketDocument> {
-  build(theAttribues: TicketAttributes): TicketDocument;
-}
-
 // describes User document (in mongodb) properties
 interface TicketDocument extends mongoose.Document {
   title: string;
   price: number;
   userId: string;
+}
+
+// describes the properties a User model has
+interface TicketModel extends mongoose.Model<TicketDocument> {
+  build(theAttribues: TicketAttributes): TicketDocument;
 }
 
 const ticketSchemea = new mongoose.Schema(

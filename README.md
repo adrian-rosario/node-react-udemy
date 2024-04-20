@@ -4,6 +4,7 @@ Coding along with the Udemy course:
 
 - [Microservices with Node JS and React](https://www.udemy.com/course/microservices-with-node-js-and-react/?couponCode=GENAISALE24)  
   Instructor: **Stephen Grider**
+  - Stack: Docker Google Cloud Kubernetes, Jest, MongoDB, NATS Streaming Server, Next JS, Node JS, NPM, Skaffold, React, TypeScript
 
 ## Launching the application:
 
@@ -11,7 +12,7 @@ Coding along with the Udemy course:
 2. run the Connect command provided
 3. generate a secrete, ie. `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=xyz123`
 4. Run two commands to install the Ingress-Nginx Controller:  
-   `kubectl create clusterrolebinding cluster-admin-binding \
+    `kubectl create clusterrolebinding cluster-admin-binding \
 --clusterrole cluster-admin \
 --user $(gcloud config get-value account)`
 5. `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml`
