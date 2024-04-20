@@ -19,7 +19,7 @@ Coding along with the Udemy course:
 6. `skaffold dev`
 7. wait, the process takes a few minutes to complete
 8. get the ingress IP address
-9. apply that IP to the `/etc/hosts` file for the domain you want to subtitute, in this case, `ticketing.com`
+9. apply that IP locally to the `/etc/hosts` file for the domain you want to subtitute, in this case, `ticketing.com`
 
 ---
 
