@@ -4,7 +4,7 @@ Coding along with the Udemy course:
 
 - [Microservices with Node JS and React](https://www.udemy.com/course/microservices-with-node-js-and-react/?couponCode=GENAISALE24)  
   Instructor: **Stephen Grider**
-  - Stack: Docker Google Cloud Kubernetes, Jest, MongoDB, NATS Streaming Server, Next JS, Node JS, NPM, Skaffold, React, TypeScript
+  - Docker Google Cloud Kubernetes, Jest, MongoDB, NATS Streaming Server, Next JS, Node JS, NPM, Skaffold, React, TypeScript
 
 ## Launching the application:
 
