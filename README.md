@@ -2,7 +2,7 @@
 
 Coding along with the Udemy course:
 
-- [Microservices with Node JS and React](https://www.udemy.com/course/microservices-with-node-js-and-react/?couponCode=GENAISALE24)  
+- [Microservices with Node JS and React](https://www.udemy.com/course/microservices-with-node-js-and-react/)  
   Instructor: **Stephen Grider**
   - Docker Google Cloud Kubernetes, Jest, MongoDB, NATS Streaming Server, Next JS, Node JS, NPM, Skaffold, React, TypeScript
 
@@ -24,6 +24,24 @@ Coding along with the Udemy course:
 ---
 
 ## Project Two, ticketing - users, sales, payments
+
+### 21. NATS, poc/tests
+
+- initial stages of trying out publishing and listening ot events using NATS Streaming Server (deprecated)
+- Class Listener
+  | Property | Type | Goal |
+  |:-------------------:|:--------------------------:|:--------------------------------------:|
+  | subject | string | name of the channel for listener |
+  | onMessage | `(event: EventData)=>void` | run when message received |
+  | client | Stan | pre-initialized NATS client |
+  | queueGroupName | string | name of queue group listener will join |
+  | ackWait | number | seconds has to ack message |
+  | subscriptionOptions | SubscriptionOptions | default subscription options |
+  | listen | `()=>void` | sets up subscription |
+  | parseMessage | (msg:Message)=>any | helper for parsing messages |
+
+- **Queue Group** assigned to listeners - when we have multiple instances of a listener (for load balancing), new messages will be sent to only one listener instances **so concurrent responses are not triggered**
+- port fowarding for the node port service, ie. `kubectl port-forward nats-deployment-xxx 4222:4222`
 
 ### 20. Tickets CRUD, and test cases setup
 
@@ -234,7 +252,7 @@ There's no persistence here, the exercise is the communication between resources
 
 - Services:
   | Service | local folder | port |
-  | :-------: | :----------: | :--: |
+  |:---------:|:------------:|:----:|
   | React | /client | 3000 |
   | Posts | /posts | 4000 |
   | Comments | /comments | 4001 |
