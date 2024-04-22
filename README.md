@@ -27,7 +27,7 @@ Coding along with the Udemy course:
 
 ### 21. NATS, poc/tests
 
-- initial stages of trying out publishing and listening ot events using NATS Streaming Server (deprecated)
+- initial stages of trying out publishing and listening to events using NATS Streaming Server (deprecated), Common updated with Events code
 - Class Listener
   | Property | Type | Goal |
   |:-------------------:|:--------------------------:|:--------------------------------------:|

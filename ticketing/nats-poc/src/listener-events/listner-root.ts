@@ -1,11 +1,23 @@
 import { Message, Stan } from "node-nats-streaming";
+import { Subjects } from "../enums/enum-subjects";
 
-export abstract class Listener {
-  abstract subject: string;
+interface Event {
+  subject: Subjects;
+  data: any;
+}
+
+// generic class:
+// <T extends Event>
+// whenever we try and make user of Listener in any way
+// we're going to have to provide some custom type to
+// this
+// - can be thought of as an argument, for types
+export abstract class Listener<T extends Event> {
+  abstract subject: T["subject"]; // string;
   abstract queueGroupName: string;
   private client: Stan;
   protected ackWait = 5 * 1000; // subclass can definte
-  abstract onMessage(data: any, msg: Message): void;
+  abstract onMessage(data: T["data"], msg: Message): void; // (data: any, msg: Message)
 
   constructor(client: Stan) {
     this.client = client;
