@@ -7,6 +7,8 @@ import {
   requireAuthentication,
   UnauthorizedError,
 } from "@agrtickets/common";
+import { PublisherTicketUpdated } from "../events/publishers/publisher-ticket-updated";
+import { natsWrapper } from "../nats/nats-wrapper";
 
 const router = express.Router();
 
@@ -37,6 +39,13 @@ router.put(
       price: theRequest.body.price,
     });
     await ticket.save();
+
+    new PublisherTicketUpdated(natsWrapper.client).publish({
+      id: ticket.id,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.userId,
+    });
 
     theResponse.send(ticket);
   }

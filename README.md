@@ -25,6 +25,11 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 22. Tickets, NATS singleton
+
+-
+- NATS wrapper/singleton, graceful shutdown
+
 ### 21. NATS, poc/tests
 
 - initial stages of trying out publishing and listening to events using NATS Streaming Server (deprecated), Common updated with Events code
