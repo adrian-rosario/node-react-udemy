@@ -1,12 +1,14 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { app } from "../app";
-import request from "supertest";
+// import { app } from "../app";
+// import request from "supertest";
 import jwt from "jsonwebtoken";
 
 declare global {
   var signin: () => string[];
 }
+
+jest.mock("../nats/nats-wrapper");
 
 let mongoMemoryServer: any;
 
@@ -22,6 +24,8 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
+  jest.clearAllMocks();
+
   // delete/reset any existing data, start off clean
   const collections = await mongoose.connection.db.collections();
 

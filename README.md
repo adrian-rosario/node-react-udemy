@@ -27,7 +27,7 @@ Coding along with the Udemy course:
 
 ### 22. Tickets, NATS singleton
 
--
+- env vars created in Tickets YAML deployment for NATS values
 - NATS wrapper/singleton, graceful shutdown
 
 ### 21. NATS, poc/tests

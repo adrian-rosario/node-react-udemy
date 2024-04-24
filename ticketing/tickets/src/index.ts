@@ -13,12 +13,22 @@ const start = async () => {
     throw new Error("MONGO_URI must be defined");
   }
 
+  // nats checks
+  if (!process.env.NATS_CLIENT_ID) {
+    throw new Error("NATS_CLIENT_ID must be defined");
+  }
+  if (!process.env.NATS_URL) {
+    throw new Error("NATS_URL must be defined");
+  }
+  if (!process.env.NATS_CLUSTER_ID) {
+    throw new Error("NATS_CLUSTER_ID must be defined");
+  }
+
   try {
-    const instanceId = randomBytes(4).toString("hex");
     await natsWrapper.connect(
-      "ticketing",
-      instanceId,
-      "http://nats-cluster-ip-service:4222"
+      process.env.NATS_CLUSTER_ID,
+      process.env.NATS_CLIENT_ID,
+      process.env.NATS_URL
     );
 
     natsWrapper.client.on("close", () => {

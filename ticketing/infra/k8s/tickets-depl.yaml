@@ -16,6 +16,14 @@ spec:
         - name: tickets
           image: us.gcr.io/fourth-carport-417818/tickets
           env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name # use pod name for env var value
+            - name: NATS_URL
+              value: "http://nats-cluster-ip-service:4222"
+            - name: NATS_CLUSTER_ID
+              value: ticketing
             - name: MONGO_URI
               value: "mongodb://tickets-mongodb-cluster-ip-service:27017/tickets"
             - name: JWT_KEY
