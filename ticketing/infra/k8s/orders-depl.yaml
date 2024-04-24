@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      containers:
+        - name: orders
+          image: us.gcr.io/fourth-carport-417818/orders
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name # use pod name for env var value
+            - name: NATS_URL
+              value: "http://nats-cluster-ip-service:4222"
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: MONGO_URI
+              value: "mongodb://orders-mongodb-cluster-ip-service:27017/orders"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-srv-cluster-ip-service
+spec:
+  selector:
+    app: orders
+  ports:
+    - name: orders-cluster-ip-service
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

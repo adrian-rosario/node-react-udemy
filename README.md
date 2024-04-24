@@ -25,25 +25,53 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 22. Orders service
+
+- Order
+
+  | route            | method |         body         | purpose                            |
+  | ---------------- | :----: | :------------------: | ---------------------------------- |
+  | /api/orders      |  GET   |          -           | all active orders for current user |
+  | /api/orders/id   |  GET   |          -           | get order details                  |
+  | /api/orders      |  POST  | `{ticketID: string}` | create order for ticket#           |
+  | /api/orderes/:id | DELETE |          -           | delete order#                      |
+
+  | prop      | type                     |
+  | --------- | ------------------------ |
+  | userId    | the user who created     |
+  | status    | `expired, paid, pending` |
+  | expiresAt | order ttl timestamp      |
+  | ticketId  | `id` of ticket           |
+
+  Ticket
+
+  | prop    | type                       |
+  | ------- | -------------------------- |
+  | title   | `title` of event           |
+  | price   | `price` in USD             |
+  | version | don't process events twice |
+
 ### 22. Tickets, NATS singleton
 
 - env vars created in Tickets YAML deployment for NATS values
 - NATS wrapper/singleton, graceful shutdown
+- TODO: fix tests
 
 ### 21. NATS, poc/tests
 
 - initial stages of trying out publishing and listening to events using NATS Streaming Server (deprecated), Common updated with Events code
 - Class Listener
-  | Property | Type | Goal |
-  |:-------------------:|:--------------------------:|:--------------------------------------:|
-  | subject | string | name of the channel for listener |
-  | onMessage | `(event: EventData)=>void` | run when message received |
-  | client | Stan | pre-initialized NATS client |
-  | queueGroupName | string | name of queue group listener will join |
-  | ackWait | number | seconds has to ack message |
-  | subscriptionOptions | SubscriptionOptions | default subscription options |
-  | listen | `()=>void` | sets up subscription |
-  | parseMessage | (msg:Message)=>any | helper for parsing messages |
+
+  |      Property       |            Type            |                  Goal                  |
+  | :-----------------: | :------------------------: | :------------------------------------: |
+  |       subject       |           string           |    name of the channel for listener    |
+  |      onMessage      | `(event: EventData)=>void` |       run when message received        |
+  |       client        |            Stan            |      pre-initialized NATS client       |
+  |   queueGroupName    |           string           | name of queue group listener will join |
+  |       ackWait       |           number           |       seconds has to ack message       |
+  | subscriptionOptions |    SubscriptionOptions     |      default subscription options      |
+  |       listen        |         `()=>void`         |          sets up subscription          |
+  |    parseMessage     |     (msg:Message)=>any     |      helper for parsing messages       |
 
 - **Queue Group** assigned to listeners - when we have multiple instances of a listener (for load balancing), new messages will be sent to only one listener instances **so concurrent responses are not triggered**
 - port fowarding for the node port service, ie. `kubectl port-forward nats-deployment-xxx 4222:4222`
