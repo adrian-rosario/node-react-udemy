@@ -5,6 +5,8 @@ import {
   requireAuthentication,
 } from "@agrtickets/common";
 import { Order, OrderStatus } from "../models/model-order";
+import { PublisherOrderCancelled } from "../events/publishers/publisher-order-cancelled";
+import { natsWrapper } from "../nats/nats-wrapper";
 
 const router = express.Router();
 
@@ -16,7 +18,7 @@ router.delete(
   async (theRequest: Request, theResponse: Response) => {
     const { orderId } = theRequest.params;
 
-    const order = await Order.findById(orderId);
+    const order = await Order.findById(orderId).populate("ticket");
 
     if (!order) {
       throw new NotFoundError();
@@ -30,6 +32,12 @@ router.delete(
     await order.save();
 
     // publish canceled event
+    new PublisherOrderCancelled(natsWrapper.client).publish({
+      id: order.id,
+      ticket: {
+        id: order.ticket.id,
+      },
+    });
 
     // 204, actually cancelling, not deleting
     theResponse.status(204).send(order);
