@@ -1,8 +1,11 @@
 import express from "express";
 import "express-async-errors";
 import { json } from "body-parser";
-import { errorHandler } from "@agrtickets/common";
-import { NotFoundError } from "@agrtickets/common";
+import {
+  errorHandler,
+  NotFoundError,
+  currentUserCheck,
+} from "@agrtickets/common";
 import cookieSession from "cookie-session";
 
 import { indexOrderRouter } from "./routes";
@@ -22,6 +25,8 @@ app.use(
     secure: process.env.NODE_ENV !== "test", // https connection: false if we are in a test env, otherwise true
   })
 );
+
+app.use(currentUserCheck);
 
 app.use(newOrderRouter);
 app.use(showOrderRouter);

@@ -19,7 +19,7 @@ interface UserDocument extends mongoose.Document {
   password: string;
 }
 
-const userSchemea = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     email: {
       type: String, // specific to Mongoose, referring to an actual constructor (hence cap)
@@ -44,7 +44,7 @@ const userSchemea = new mongoose.Schema(
 );
 
 // hash password before writing to db
-userSchemea.pre("save", async function (done) {
+userSchema.pre("save", async function (done) {
   if (this.isModified("password")) {
     const hashed = await PasswordManager.toHash(this.get("password"));
     this.set("password", hashed);
@@ -53,10 +53,10 @@ userSchemea.pre("save", async function (done) {
   done();
 });
 
-userSchemea.statics.build = (theAttributes: UserAttributes) => {
+userSchema.statics.build = (theAttributes: UserAttributes) => {
   return new User(theAttributes);
 };
 
-const User = mongoose.model<UserDocument, UserModel>("User", userSchemea);
+const User = mongoose.model<UserDocument, UserModel>("User", userSchema);
 
 export { User };

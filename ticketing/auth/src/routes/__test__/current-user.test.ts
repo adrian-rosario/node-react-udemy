@@ -16,7 +16,7 @@ it("succeeds with current user details", async () => {
 
   const response = await request(app)
     .get("/api/users/currentuser")
-    .set({ Cookie: cookie }) // spec is now an obj, =\
+    .set("Cookie", cookie) // spec is now an obj, =\
     .send()
     .expect(200);
 

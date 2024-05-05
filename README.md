@@ -27,6 +27,7 @@ Coding along with the Udemy course:
 
 ### 22. Orders service
 
+- expiration date, `isReserved()` promise added to ticket model,
 - Order
 
   | route            | method |         body         | purpose                            |
@@ -55,7 +56,6 @@ Coding along with the Udemy course:
 
 - env vars created in Tickets YAML deployment for NATS values
 - NATS wrapper/singleton, graceful shutdown
-- TODO: fix tests
 
 ### 21. NATS, poc/tests
 
