@@ -25,6 +25,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 23. Tickets and Orders Events Publishing/Listening
+
+- tests and NATS mocks added
+
 ### 22. Orders service
 
 - expiration date, `isReserved()` promise added to ticket model,

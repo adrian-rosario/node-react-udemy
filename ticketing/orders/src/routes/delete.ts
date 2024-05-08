@@ -37,6 +37,7 @@ router.delete(
       ticket: {
         id: order.ticket.id,
       },
+      version: order.version,
     });
 
     // 204, actually cancelling, not deleting

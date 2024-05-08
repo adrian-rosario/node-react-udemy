@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post(
   "/api/tickets",
-  [requireAuthentication],
+  requireAuthentication,
   [body("title").not().isEmpty().withMessage("Title is required")],
   body("price")
     .isFloat({ gt: 0 })
@@ -30,6 +30,7 @@ router.post(
       title: ticket.title,
       price: ticket.price,
       userId: ticket.userId,
+      version: ticket.version,
     });
 
     theResponse.status(201).send(ticket);

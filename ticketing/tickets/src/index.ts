@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import { app } from "./app";
 import { natsWrapper } from "./nats/nats-wrapper";
-import { randomBytes } from "crypto";
+import { ListenerOrderCreated } from "./events/listeners/listener-order-created";
+import { ListenerOrderCancelled } from "./events/listeners/listener-order-cancelled";
 
 // mongodb
 const start = async () => {
@@ -38,6 +39,9 @@ const start = async () => {
 
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
+
+    new ListenerOrderCreated(natsWrapper.client).listen;
+    new ListenerOrderCancelled(natsWrapper.client).listen;
 
     await mongoose.connect(process.env.MONGO_URI);
 

@@ -1,23 +1,29 @@
 import mongoose from "mongoose";
 import { Order, OrderStatus } from "./model-order";
-// import { OrderStatus } from "@agrtickets/common";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface TicketAttributes {
   title: string;
   price: number;
-  // version: string;
+  id: string;
+}
+
+interface TicketModel extends mongoose.Model<TicketDocument> {
+  build(attribuies: TicketAttributes): TicketDocument;
+  // helper, to display event/prevoius version
+  findEvent(event: {
+    id: string;
+    version: number;
+  }): Promise<TicketDocument | null>;
 }
 
 export interface TicketDocument extends mongoose.Document {
   title: string;
   price: number;
+  version: number;
   isReserved(): Promise<boolean>;
-  // version: string;
 }
 
-interface TicketModel extends mongoose.Model<TicketDocument> {
-  build(attribuies: TicketAttributes): TicketDocument;
-}
 const ticketSchema = new mongoose.Schema(
   {
     title: {
@@ -40,10 +46,23 @@ const ticketSchema = new mongoose.Schema(
   }
 );
 
+ticketSchema.set("versionKey", "version");
+ticketSchema.plugin(updateIfCurrentPlugin);
+
+ticketSchema.statics.findEvent = (event: { id: string; version: number }) => {
+  return Ticket.findOne({
+    _id: event.id,
+    version: event.version - 1,
+  });
+};
 // statics object is how we add a new method directly to
 // the ticket model itself
 ticketSchema.statics.build = (attributes: TicketAttributes) => {
-  return new Ticket(attributes);
+  return new Ticket({
+    _id: attributes.id,
+    title: attributes.title,
+    price: attributes.price,
+  });
 };
 ticketSchema.methods.isReserved = async function () {
   const existingOrder = await Order.findOne({

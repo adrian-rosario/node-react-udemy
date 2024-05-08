@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-// import { PasswordManager } from "../util/password-manager";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 // for type checking of attributes when we create a new ticket
 // ie. we can't accidentally mangle the propertie w/o type checks complaining
@@ -14,6 +14,9 @@ interface TicketDocument extends mongoose.Document {
   title: string;
   price: number;
   userId: string;
+  version: number;
+  orderId?: string;
+  isReserved(): Promise<boolean>;
 }
 
 // describes the properties a User model has
@@ -36,6 +39,9 @@ const ticketSchemea = new mongoose.Schema(
       type: String,
       requred: true,
     },
+    orderId: {
+      type: String,
+    },
   },
   {
     toJSON: {
@@ -46,6 +52,9 @@ const ticketSchemea = new mongoose.Schema(
     },
   }
 );
+
+ticketSchemea.set("versionKey", "version");
+ticketSchemea.plugin(updateIfCurrentPlugin);
 
 ticketSchemea.statics.build = (theAttributes: TicketAttributes) => {
   return new Ticket(theAttributes);

@@ -6,6 +6,7 @@ import {
   NotFoundError,
   requireAuthentication,
   UnauthorizedError,
+  BadRequestError,
 } from "@agrtickets/common";
 import { PublisherTicketUpdated } from "../events/publishers/publisher-ticket-updated";
 import { natsWrapper } from "../nats/nats-wrapper";
@@ -23,6 +24,7 @@ router.put(
       .isEmpty()
       .withMessage("Price is required"),
   ],
+  validateRequest,
   async (theRequest: Request, theResponse: Response) => {
     const ticket = await Ticket.findById(theRequest.params.id);
     if (!ticket) {
@@ -31,6 +33,10 @@ router.put(
 
     if (ticket.userId !== theRequest.currentUser!.id) {
       throw new UnauthorizedError();
+    }
+
+    if (ticket.orderId) {
+      throw new BadRequestError("bad request, reserved");
     }
 
     // apply update
@@ -45,10 +51,11 @@ router.put(
       title: ticket.title,
       price: ticket.price,
       userId: ticket.userId,
+      version: ticket.version,
     });
 
     theResponse.send(ticket);
   }
 );
 
-export { router as updateRouter };
+export { router as updateTicketRouter };
