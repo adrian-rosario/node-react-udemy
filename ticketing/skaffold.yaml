@@ -38,6 +38,14 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
+    - image: us.gcr.io/fourth-carport-417818/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
 deploy:
   kubectl:
     manifests:

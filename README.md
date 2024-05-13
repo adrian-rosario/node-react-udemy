@@ -25,6 +25,10 @@ Coding along with the Udemy course:
 
 ## Project Two, ticketing - users, sales, payments
 
+### 24. Order Expiration
+
+- cancelled event emit/publish added
+
 ### 23. Tickets and Orders Events Publishing/Listening
 
 - tests and NATS mocks added

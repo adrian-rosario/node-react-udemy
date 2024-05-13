@@ -16,7 +16,7 @@ import { natsWrapper } from "../nats/nats-wrapper";
 // new order router
 const router = express.Router();
 
-const EXPIRATION_SECONDS = 15 * 60; // TODO: move to env var
+const EXPIRATION_SECONDS = 1 * 60; // TODO: move to env var
 
 router.post(
   "/api/orders",
@@ -67,7 +67,7 @@ router.post(
     new PublisherOrderCreated(natsWrapper.client).publish({
       id: order.id,
       userId: order.userId,
-      expiresAt: order.expiresAt.toISOString(),
+      expiresAt: order.expiresAt.toISOString(), // emit in future
       status: order.status,
       ticket: {
         id: ticket.id,
