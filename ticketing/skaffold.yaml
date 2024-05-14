@@ -46,6 +46,14 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
+    - image: us.gcr.io/fourth-carport-417818/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
 deploy:
   kubectl:
     manifests:

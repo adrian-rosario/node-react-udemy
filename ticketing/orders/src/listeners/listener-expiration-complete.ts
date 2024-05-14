@@ -21,7 +21,8 @@ export class ListenerExpirationComplete extends Listener<OrderExpiredInterface> 
       throw new Error("order not found");
     }
 
-    order.set({ status: OrderStatus.Canceled });
+    // TODO: revisit after payments service implemented
+    order.set({ status: OrderStatus.Cancelled });
 
     await order.save();
 

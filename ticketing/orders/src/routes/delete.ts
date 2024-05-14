@@ -28,10 +28,10 @@ router.delete(
       throw new UnauthorizedError();
     }
 
-    order.status = OrderStatus.Canceled;
+    order.status = OrderStatus.Cancelled;
     await order.save();
 
-    // publish canceled event
+    // publish cancelled event
     new PublisherOrderCancelled(natsWrapper.client).publish({
       id: order.id,
       ticket: {

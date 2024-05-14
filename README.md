@@ -10,7 +10,11 @@ Coding along with the Udemy course:
 
 1. create the Kubernetes Cluster in Google Cloud
 2. run the Connect command provided
-3. generate a secrete, ie. `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=xyz123`
+3. generate secrets:
+
+- `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=xyz123`
+- `kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=abc123`
+
 4. Run two commands to install the Ingress-Nginx Controller:  
     `kubectl create clusterrolebinding cluster-admin-binding \
 --clusterrole cluster-admin \
@@ -23,7 +27,23 @@ Coding along with the Udemy course:
 
 ---
 
-## Project Two, ticketing - users, sales, payments
+## Project Two, NATS Streaming: ticketing - users, sales, payments
+
+### 25. Handling Payments, Stripe
+
+| Payment Service |
+| :-------------: |
+|     charges     |
+|     orders      |
+
+| Listen          | Publish        |
+| --------------- | -------------- |
+| order:created   | charge:created |
+| order:cancelled |                |
+
+- payments service will receive order created event, and listens for order cancelled
+  - emits a charge created event
+- Stripe integrated for transactions
 
 ### 24. Order Expiration
 
