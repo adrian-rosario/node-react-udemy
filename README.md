@@ -29,6 +29,20 @@ Coding along with the Udemy course:
 
 ## Project Two, NATS Streaming: ticketing - users, sales, payments
 
+### 26. Client, completing the routes needed
+
+|       Route        | Goal                                |
+| :----------------: | ----------------------------------- |
+|    /auth/signin    | Signin form                         |
+|    /auth/signup    | Signup form                         |
+|   /auth/signout    | Log out                             |
+|         /          | List all tickets ^new^              |
+|    /tickets/new    | New ticket ^new^                    |
+| /tickets/:ticketId | Ticket details ^new^                |
+|  /orders/:orderId  | Order details, Payment button ^new^ |
+
+- for Next route files which intake a parameter which the component utilizes, ie: `/tickets/[ticketId].js`
+
 ### 25. Handling Payments, Stripe
 
 | Payment Service |
