@@ -43,7 +43,7 @@ Coding along with the Udemy course:
 
 - payments service will receive order created event, and listens for order cancelled
   - emits a charge created event
-- Stripe integrated for transactions
+- [Stripe](https://stripe.com/) integrated for transactions
 
 ### 24. Order Expiration
 
